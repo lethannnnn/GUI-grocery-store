@@ -22,12 +22,13 @@ public class AdminDao {
 		boolean flag = false;
 
 		try {
-			String query = "insert into admin(username, email, password, phone) values(?, ?, ?, ?)";
-			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setString(1, admin.getName());
-			psmt.setString(2, admin.getEmail());
-			psmt.setString(3, admin.getPassword());
-			psmt.setString(4, admin.getPhone());
+			PreparedStatement psmt=con.prepareStatement("INSERT INTO admin VALUES (?,?,?,?,?)");
+                        int id=admin.getId()+1;
+                        psmt.setInt(1, id);
+			psmt.setString(2, admin.getName());
+			psmt.setString(3, admin.getEmail());
+			psmt.setString(4, admin.getPassword());
+			psmt.setString(5, admin.getPhone());
 
 			psmt.executeUpdate();
 			flag = true;
@@ -37,6 +38,7 @@ public class AdminDao {
 		}
 		return flag;
 	}
+        
 	public Admin getAdminByEmailPassword(String email, String password) {
 		Admin admin = null;
 		try {
