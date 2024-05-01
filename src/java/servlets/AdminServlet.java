@@ -45,7 +45,7 @@ public class AdminServlet extends HttpServlet {
 			if(flag) {
 				message = new Message("New admin register successfully!", "success", "alert-success");
 			}else {
-				message = new Message("Sorry! Something went wrong", "error", "alert-danger");
+				message = new Message("Sorry! Something went wrong lol", "error", "alert-danger");
 			}
 
 		}else if(operation.trim().equals("delete")) {
