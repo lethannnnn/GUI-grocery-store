@@ -9,7 +9,7 @@ Admin activeAdmin = (Admin) session.getAttribute("activeAdmin");
 if (activeAdmin == null) {
 	Message message = new Message("You are not logged in! Login first!!", "error", "alert-danger");
 	session.setAttribute("message", message);
-	response.sendRedirect("adminlogin.jsp");
+	response.sendRedirect("adminLogin.jsp");
 	return;
 }
 %>

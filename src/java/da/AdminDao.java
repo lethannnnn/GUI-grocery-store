@@ -22,13 +22,13 @@ public class AdminDao {
 		boolean flag = false;
 
 		try {
-			PreparedStatement psmt=con.prepareStatement("INSERT INTO admin VALUES (?,?,?,?,?)");
-                        int id=admin.getId()+1;
-                        psmt.setInt(1, id);
-			psmt.setString(2, admin.getName());
-			psmt.setString(3, admin.getEmail());
-			psmt.setString(4, admin.getPassword());
-			psmt.setString(5, admin.getPhone());
+			PreparedStatement psmt=con.prepareStatement("INSERT INTO admin (username,email,password,phone) VALUES (?,?,?,?)");
+                        
+                        
+			psmt.setString(1, admin.getName());
+			psmt.setString(2, admin.getEmail());
+			psmt.setString(3, admin.getPassword());
+			psmt.setString(4, admin.getPhone());
 
 			psmt.executeUpdate();
 			flag = true;

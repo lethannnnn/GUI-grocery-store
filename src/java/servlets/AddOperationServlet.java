@@ -47,11 +47,12 @@ public class AddOperationServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String operation = request.getParameter("operation");
-		CategoryDao catDao = new CategoryDao(ConnectionProvider.getConnection());
-		ProductDao pdao = new ProductDao(ConnectionProvider.getConnection());
 		HttpSession session = request.getSession();
 		Message message = null;
-
+                try{
+                    CategoryDao catDao = new CategoryDao(ConnectionProvider.getConnection());
+                    ProductDao pdao = new ProductDao(ConnectionProvider.getConnection());
+                
 		if (operation.trim().equals("addCategory")) {
 
 			String categoryName = request.getParameter("category_name");
@@ -212,9 +213,15 @@ public class AddOperationServlet extends HttpServlet {
 			response.sendRedirect("display_products.jsp");
 
 		}
-		return;
-	}
-
+	
+            }catch (Exception e) {
+            e.printStackTrace(); // Print stack trace for debugging
+            message = new Message("Error occurred: " + e.getMessage(), "error", "alert-danger");
+            session.setAttribute("message", message);
+            response.sendRedirect("admin.jsp");
+        }
+    return; 
+    }
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
