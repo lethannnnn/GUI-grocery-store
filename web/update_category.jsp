@@ -42,7 +42,7 @@ if (activeAdmin == null) {
 							<input type="hidden" name="operation" value="updateCategory">
 							<div class="mb-3">
 								<label class="form-label"><b>Category Name</b></label> <input
-									type="text" name="category_name" value="<%=category.getCategoryName()%>" class="form-control" >
+									type="text" name="category_name" value="<%=category.getCategoryName()%>" class="form-control">
 							</div>
 							<div class="mb-3">
 								<label class="form-label"><b>Category

@@ -21,8 +21,11 @@ import domain.Category;
 import domain.Message;
 import domain.Product;
 import helper.ConnectionProvider;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
-
+@WebServlet("/AddOperationServlet")
+@MultipartConfig
 public class AddOperationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,12 +47,13 @@ public class AddOperationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+            throws ServletException, IOException {
+        
+                String operation = request.getParameter("operation");
+                HttpSession session = request.getSession();
+                Message message = null;
 
-		String operation = request.getParameter("operation");
-		HttpSession session = request.getSession();
-		Message message = null;
-                try{
+                try {
                     CategoryDao catDao = new CategoryDao(ConnectionProvider.getConnection());
                     ProductDao pdao = new ProductDao(ConnectionProvider.getConnection());
                 
@@ -60,7 +64,7 @@ public class AddOperationServlet extends HttpServlet {
 			Category category = new Category(categoryName, part.getSubmittedFileName());
 			boolean flag = catDao.saveCategory(category);
 
-			String path = request.getServletContext().getRealPath("/") + "Product_imgs" + File.separator
+			String path = request.getServletContext().getRealPath("/") + "tmp" + File.separator
 					+ part.getSubmittedFileName();
 
 			try {
@@ -79,7 +83,8 @@ public class AddOperationServlet extends HttpServlet {
 			if (flag) {
 				message = new Message("Category added successfully!!", "success", "alert-success");
 			} else {
-				message = new Message("Something went wrong! Try again!!", "error", "alert-danger");
+                                String errorMessage = "Error occurred: id=" + request.getParameter("cid") + ", name=" + request.getParameter("category_name") + ", image=" + request.getPart("category_img").getSubmittedFileName();
+                                message = new Message(errorMessage, "error", "alert-danger");
 			}
 			session.setAttribute("message", message);
 			response.sendRedirect("admin.jsp");
@@ -214,14 +219,24 @@ public class AddOperationServlet extends HttpServlet {
 
 		}
 	
-            }catch (Exception e) {
+            } catch (Exception e) {
             e.printStackTrace(); // Print stack trace for debugging
-            message = new Message("Error occurred: " + e.getMessage(), "error", "alert-danger");
+            String errorMessage = "Error occurred: ";
+            if (e.getMessage() != null) {
+                errorMessage += e.getMessage();
+            } else {
+                errorMessage += "Unknown error";
+            }
+            errorMessage += ". Variables involved: ";
+            errorMessage += "id=" + request.getParameter("cid") + ", ";
+            errorMessage += "name=" + request.getParameter("category_name") + ", ";
+            errorMessage += "image=" + request.getPart("category_img").getSubmittedFileName();
+            message = new Message(errorMessage, "error", "alert-danger");
             session.setAttribute("message", message);
             response.sendRedirect("admin.jsp");
-        }
-    return; 
-    }
+                }
+            return; 
+            }
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub

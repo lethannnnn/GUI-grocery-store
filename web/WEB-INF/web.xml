@@ -93,8 +93,8 @@
         <url-pattern>/WishlistServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddOperationServlet</servlet-name>
-        <url-pattern>/AddOperationServlet</url-pattern>
+    <servlet-name>AddOperationServlet</servlet-name>
+    <url-pattern>/AddOperation</url-pattern> <!-- Adjust the URL pattern as needed -->
     </servlet-mapping>
     <session-config>
         <session-timeout>

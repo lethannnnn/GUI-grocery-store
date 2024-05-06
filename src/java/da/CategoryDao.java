@@ -18,22 +18,24 @@ public class CategoryDao {
 	}
 
 	public boolean saveCategory(Category category) {
-		boolean flag = false;
+        boolean flag = false;
 
-		try {
-			String query = "insert into category(name, image) values(?, ?)";
-			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setString(1, category.getCategoryName());
-			psmt.setString(2, category.getCategoryImage());
+        try {
+            String query = "insert into category(name, image) values(?, ?)";
+            PreparedStatement psmt = this.con.prepareStatement(query);
+            psmt.setString(1, category.getCategoryName());
+            psmt.setString(2, category.getCategoryImage());
 
-			psmt.executeUpdate();
-			flag = true;
+            int rowsAffected = psmt.executeUpdate();
+            if (rowsAffected > 0) {
+                flag = true; // Set flag to true if insertion is successful
+            }
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return flag;
-	}
+        } catch (SQLException e) {
+            e.printStackTrace(); // Print stack trace for debugging
+        }
+        return flag;
+    }
 
 	public List<Category> getAllCategories() {
 
