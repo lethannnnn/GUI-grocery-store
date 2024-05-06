@@ -23,8 +23,7 @@ public class AdminDao {
 
 		try {
 			PreparedStatement psmt=con.prepareStatement("INSERT INTO admin (username,email,password,phone) VALUES (?,?,?,?)");
-                        
-                        
+                                               
 			psmt.setString(1, admin.getName());
 			psmt.setString(2, admin.getEmail());
 			psmt.setString(3, admin.getPassword());
