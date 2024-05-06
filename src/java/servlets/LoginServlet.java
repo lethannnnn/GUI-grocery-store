@@ -63,9 +63,9 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("activeAdmin", admin);
 					response.sendRedirect("admin.jsp");
 				} else {
-					Message message = new Message("Invalid details! Try again!!", "error", "alert-danger");
+					Message message = new Message("Invalid details! Try again!!" , "error", "alert-danger");
 					session.setAttribute("message", message);
-					response.sendRedirect("adminLogin.jsp");
+					 
 					return;
 				}
 			} catch (Exception e) {
