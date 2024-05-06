@@ -96,7 +96,7 @@ List<Product> topDeals = productDao.getDiscountedProducts();
 		<button class="carousel-control-next" type="button"
 			data-bs-target="#carouselAutoplaying" data-bs-slide="next">
 			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">NextTEST</span>
+				class="visually-hidden">Next</span>
 		</button>
 	</div>
 	<!-- end of carousel -->
