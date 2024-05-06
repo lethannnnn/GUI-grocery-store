@@ -29,8 +29,10 @@ public class ProductDao {
 			psmt.setString(6, product.getProductImages());
 			psmt.setInt(7, product.getCategoryId());
 
-			psmt.executeUpdate();
-			flag = true;
+			int rowsAffected = psmt.executeUpdate();
+                        if (rowsAffected > 0) {
+                            flag = true; // Set flag to true if insertion is successful
+                        }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

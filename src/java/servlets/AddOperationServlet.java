@@ -83,8 +83,7 @@ public class AddOperationServlet extends HttpServlet {
 			if (flag) {
 				message = new Message("Category added successfully!!", "success", "alert-success");
 			} else {
-                                String errorMessage = "Error occurred: id=" + request.getParameter("cid") + ", name=" + request.getParameter("category_name") + ", image=" + request.getPart("category_img").getSubmittedFileName();
-                                message = new Message(errorMessage, "error", "alert-danger");
+                                message = new Message("Something went wrong! Try again!!", "error", "alert-danger");
 			}
 			session.setAttribute("message", message);
 			response.sendRedirect("admin.jsp");
@@ -107,7 +106,7 @@ public class AddOperationServlet extends HttpServlet {
 					categoryType);
 			boolean flag = pdao.saveProduct(product);
 
-			String path = request.getServletContext().getRealPath("/") + "Product_imgs" + File.separator
+			String path = request.getServletContext().getRealPath("/") + "tmp" + File.separator
 					+ part.getSubmittedFileName();
 			try {
 				FileOutputStream fos = new FileOutputStream(path);
@@ -141,7 +140,7 @@ public class AddOperationServlet extends HttpServlet {
 			} else {
 				Category category = new Category(cid, name, part.getSubmittedFileName());
 				catDao.updateCategory(category);
-				String path = request.getServletContext().getRealPath("/") + "Product_imgs" + File.separator
+				String path = request.getServletContext().getRealPath("/") + "tmp" + File.separator
 						+ part.getSubmittedFileName();
 				try {
 					FileOutputStream fos = new FileOutputStream(path);
@@ -192,7 +191,7 @@ public class AddOperationServlet extends HttpServlet {
 						part.getSubmittedFileName(), cid);
 				pdao.updateProduct(product);
 				// product image upload
-				String path = request.getServletContext().getRealPath("/") + "Product_imgs" + File.separator
+				String path = request.getServletContext().getRealPath("/") + "tmp" + File.separator
 						+ part.getSubmittedFileName();
 				try {
 					FileOutputStream fos = new FileOutputStream(path);
@@ -220,20 +219,20 @@ public class AddOperationServlet extends HttpServlet {
 		}
 	
             } catch (Exception e) {
-            e.printStackTrace(); // Print stack trace for debugging
-            String errorMessage = "Error occurred: ";
-            if (e.getMessage() != null) {
-                errorMessage += e.getMessage();
-            } else {
-                errorMessage += "Unknown error";
-            }
-            errorMessage += ". Variables involved: ";
-            errorMessage += "id=" + request.getParameter("cid") + ", ";
-            errorMessage += "name=" + request.getParameter("category_name") + ", ";
-            errorMessage += "image=" + request.getPart("category_img").getSubmittedFileName();
-            message = new Message(errorMessage, "error", "alert-danger");
-            session.setAttribute("message", message);
-            response.sendRedirect("admin.jsp");
+                e.printStackTrace(); // Print stack trace for debugging
+                String errorMessage = "Error occurred: ";
+                if (e.getMessage() != null) {
+                    errorMessage += e.getMessage();
+                } else {
+                    errorMessage += "Unknown error";
+                }
+                errorMessage += ". Variables involved: ";
+                errorMessage += "id=" + request.getParameter("cid") + ", ";
+                errorMessage += "name=" + request.getParameter("category_name") + ", ";
+                errorMessage += "image=" + request.getPart("category_img").getSubmittedFileName();
+                message = new Message(errorMessage, "error", "alert-danger");
+                session.setAttribute("message", message);
+                response.sendRedirect("admin.jsp");
                 }
             return; 
             }

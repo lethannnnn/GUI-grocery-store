@@ -47,7 +47,7 @@ ProductDao productDao = new ProductDao(ConnectionProvider.getConnection());
 				String category = catDao.getCategoryName(prod.getCategoryId());
 			%>
 			<tr class="text-center">
-				<td><img src="Product_imgs\<%=prod.getProductImages()%>"
+				<td><img src="tmp/<%=prod.getProductImages()%>"
 					style="width: 60px; height: 60px; width: auto;"></td>
 				<td class="text-start"><%=prod.getProductName()%></td>
 				<td><%=category%></td>
