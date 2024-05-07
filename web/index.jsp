@@ -59,7 +59,7 @@ List<Product> topDeals = productDao.getDiscountedProducts();
 						<div class="card cus-card h-100">
 							<div class="container text-center">
 								<img src="tmp/<%=c.getCategoryImage()%>" class="mt-3 "
-									style="max-width: 100%; max-height: 100px; width: auto; height: auto;">
+									style="max-width: 100%; max-height: 100px; width: auto; height: auto;border-radius: 70px">
 							</div>
 							<h6><%=c.getCategoryName()%></h6>
 						</div>
@@ -128,8 +128,8 @@ List<Product> topDeals = productDao.getDiscountedProducts();
 							<h5 class="card-title text-center"><%=productList.get(i).getProductName()%></h5>
 
 							<div class="container text-center">
-								<span class="real-price">&#8377;<%=productList.get(i).getProductPriceAfterDiscount()%></span>
-								&ensp;<span class="product-price">&#8377;<%=productList.get(i).getProductPrice()%>
+								<span class="real-price">&#36;<%=productList.get(i).getProductPriceAfterDiscount()%></span>
+								&ensp;<span class="product-price">&#36;<%=productList.get(i).getProductPrice()%>
 								</span>&ensp;<span class="product-discount"><%=productList.get(i).getProductDiscount()%>&#37;
 									off</span>
 							</div>

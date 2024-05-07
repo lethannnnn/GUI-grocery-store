@@ -40,7 +40,7 @@ List<Category> categoryList = catDao.getAllCategories();
 	%>
 	<div class="container">
 		<a class="navbar-brand" href="admin.jsp"><i
-			class="fa-sharp fa-solid fa-house" style="color: #ffffff;"></i>&ensp;GroceryShop</a>
+			class="fa-sharp fa-solid fa-house" style="color: #ffffff;"></i>&ensp;TARgrocery</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -75,7 +75,7 @@ List<Category> categoryList = catDao.getAllCategories();
 	<!-- for all -->
 	<div class="container">
 		<a class="navbar-brand" href="index.jsp"><i
-			class="fa-sharp fa-solid fa-house" style="color: #ffffff;"></i>&ensp;GroceryShop</a>
+			class="fa-sharp fa-solid fa-house" style="color: #ffffff;"></i>&ensp;TARgrocery</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"

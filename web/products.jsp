@@ -94,7 +94,7 @@ if (searchKey != null) {
 
 				<div class="card h-100 px-2 py-2">
 					<div class="container text-center">
-						<img src="Product_imgs/<%=p.getProductImages()%>"
+						<img src="tmp/<%=p.getProductImages()%>"
 							class="card-img-top m-2"
 							style="max-width: 100%; max-height: 200px; width: auto;">
 						<div class="wishlist-icon">
@@ -131,8 +131,8 @@ if (searchKey != null) {
 						<h5 class="card-title text-center"><%=p.getProductName()%></h5>
 
 						<div class="container text-center">
-							<span class="real-price">&#8377;<%=p.getProductPriceAfterDiscount()%></span>&ensp;
-							<span class="product-price">&#8377;<%=p.getProductPrice()%></span>&ensp;
+							<span class="real-price">&#36;<%=p.getProductPriceAfterDiscount()%></span>&ensp;
+							<span class="product-price">&#36;<%=p.getProductPrice()%></span>&ensp;
 							<span class="product-discount"><%=p.getProductDiscount()%>&#37;off</span>
 						</div>
 						<div class="container text-center mb-2 mt-2">
