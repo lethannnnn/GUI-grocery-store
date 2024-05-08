@@ -52,8 +52,8 @@ Product product = (Product) productDao.getProductsByProductId(productId);
 				<div class="container-fluid my-5">
 					<h4><%=product.getProductName()%></h4>
 					<span class="fs-5"><b>Description</b></span><br> <span><%=product.getProductDescription()%></span><br>
-					<span class="real-price">&#8377;<%=product.getProductPriceAfterDiscount()%></span>&ensp;
-					<span class="product-price">&#8377;<%=product.getProductPrice()%></span>&ensp;
+					<span class="real-price">&#36;<%=product.getProductPriceAfterDiscount()%></span>&ensp;
+					<span class="product-price">&#36;<%=product.getProductPrice()%></span>&ensp;
 					<span class="product-discount"><%=product.getProductDiscount()%>&#37;off</span><br>
 					<span class="fs-5"><b>Status : </b></span> <span id="availability">
 						<%

@@ -51,7 +51,7 @@ ProductDao productDao = new ProductDao(ConnectionProvider.getConnection());
 					style="width: 60px; height: 60px; width: auto;"></td>
 				<td class="text-start"><%=prod.getProductName()%></td>
 				<td><%=category%></td>
-				<td>&#8377;<%=prod.getProductPriceAfterDiscount()%></td>
+				<td>&#36;<%=prod.getProductPriceAfterDiscount()%></td>
 				<td><%=prod.getProductQunatity()%></td>
 				<td><%=prod.getProductDiscount()%>%</td>
 				<td><a href="update_product.jsp?pid=<%=prod.getProductId()%>" role="button" class="btn btn-secondary">Update</a>&emsp;<a

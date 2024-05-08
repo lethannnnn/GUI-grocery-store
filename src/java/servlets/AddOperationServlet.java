@@ -93,7 +93,7 @@ public class AddOperationServlet extends HttpServlet {
 			// add product to database
 			String pName = request.getParameter("name");
 			String pDesc = request.getParameter("description");
-			int pPrice = Integer.parseInt(request.getParameter("price"));
+			float pPrice = Integer.parseInt(request.getParameter("price"));
 			int pDiscount = Integer.parseInt(request.getParameter("discount"));
 			if (pDiscount < 0 || pDiscount > 100) {
 				pDiscount = 0;
@@ -119,6 +119,17 @@ public class AddOperationServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				e.printStackTrace();
+                                String errorMessage = "NullPointerException occurred. Variables involved: ";
+                                errorMessage += "pName=" + request.getParameter("name") + ", ";
+                                errorMessage += "pDesc=" + request.getParameter("description") + ", ";
+                                errorMessage += "pPrice=" + request.getParameter("price") + ", ";
+                                errorMessage += "pDiscount=" + request.getParameter("discount") + ", ";
+                                errorMessage += "pQuantity=" + request.getParameter("quantity") + ", ";
+                                errorMessage += "photo=" + request.getPart("photo").getSubmittedFileName() + ", ";
+                                errorMessage += "categoryType=" + request.getParameter("categoryType");
+                                message = new Message(errorMessage, "error", "alert-danger");
+                                session.setAttribute("message", message);
+                                response.sendRedirect("admin.jsp");
 			}
 			if (flag) {
 				message = new Message("Product added successfully!!", "success", "alert-success");
@@ -218,22 +229,10 @@ public class AddOperationServlet extends HttpServlet {
 
 		}
 	
-            } catch (Exception e) {
-                e.printStackTrace(); // Print stack trace for debugging
-                String errorMessage = "Error occurred: ";
-                if (e.getMessage() != null) {
-                    errorMessage += e.getMessage();
-                } else {
-                    errorMessage += "Unknown error";
-                }
-                errorMessage += ". Variables involved: ";
-                errorMessage += "id=" + request.getParameter("cid") + ", ";
-                errorMessage += "name=" + request.getParameter("category_name") + ", ";
-                errorMessage += "image=" + request.getPart("category_img").getSubmittedFileName();
-                message = new Message(errorMessage, "error", "alert-danger");
-                session.setAttribute("message", message);
-                response.sendRedirect("admin.jsp");
-                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+          
+}
             return; 
             }
 	@Override

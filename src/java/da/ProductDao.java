@@ -19,6 +19,7 @@ public class ProductDao {
 	public boolean saveProduct(Product product) {
 		boolean flag = false;
 		try {
+                    if (con != null) {
 			String query = "insert into product(name, description, price, quantity, discount, image, cid) values(?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setString(1, product.getProductName());
@@ -33,7 +34,12 @@ public class ProductDao {
                         if (rowsAffected > 0) {
                             flag = true; // Set flag to true if insertion is successful
                         }
-		} catch (Exception e) {
+		else {
+            // Handle the case when the connection is null
+            System.out.println("Connection is null. Cannot execute query.");
+        }
+                    }
+                    } catch (Exception e) {
 			e.printStackTrace();
 		}
 

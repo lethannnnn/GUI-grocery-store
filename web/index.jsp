@@ -107,7 +107,7 @@ List<Product> topDeals = productDao.getDiscountedProducts();
 			<div class="col">
 				<div class="container text-center px-5 py-5">
 					<h1>Latest Products</h1>
-					<img src="Images\product.png" class="card-img-top"
+					<img src="Images\Lastestprod.jpg" class="card-img-top"
 						style="max-width: 100%; max-height: 200px; width: auto;">
 				</div>
 			</div>
