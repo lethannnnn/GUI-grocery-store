@@ -199,7 +199,7 @@ a {
 							</div>
 							<div class="col-md-6 mb-2">
 								<label class="form-label"><b>Discount Percentage</b></label> <input
-									type="number" name="discount" onblur="validate()"
+									type="number" name="discount" onblur="validate()" value="0"
 									placeholder="Enter discount if any!" class="form-control">
 							</div>
 						</div>
