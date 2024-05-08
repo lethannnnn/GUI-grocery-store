@@ -31,7 +31,7 @@ label {
 						<%@include file="Components/alert_message.jsp"%>
 
 						<!--change password-->
-						<form action="ChangePasswordServlet" method="post">
+						<form action="ChangePasswordServlet" method="post" >
 							<div class="mb-3">
 								<label class="form-label">Email</label> <input type="email"
 									name="email" placeholder="Enter email" class="form-control"

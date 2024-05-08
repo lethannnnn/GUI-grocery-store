@@ -107,7 +107,7 @@ List<Product> topDeals = productDao.getDiscountedProducts();
 			<div class="col">
 				<div class="container text-center px-5 py-5">
 					<h1>Latest Products</h1>
-					<img src="Images\Lastestprod.jpg" class="card-img-top"
+					<img src="Images/Lastestprod.jpg" class="card-img-top"
 						style="max-width: 100%; max-height: 200px; width: auto;">
 				</div>
 			</div>
@@ -165,8 +165,8 @@ List<Product> topDeals = productDao.getDiscountedProducts();
 							<h5 class="card-title text-center"><%=topDeals.get(i).getProductName()%></h5>
 
 							<div class="container text-center">
-								<span class="real-price">&#8377;<%=topDeals.get(i).getProductPriceAfterDiscount()%></span>
-								&ensp;<span class="product-price">&#8377;<%=topDeals.get(i).getProductPrice()%>
+								<span class="real-price">&#36;<%=topDeals.get(i).getProductPriceAfterDiscount()%></span>
+								&ensp;<span class="product-price">&#36;<%=topDeals.get(i).getProductPrice()%>
 								</span>&ensp;<span class="product-discount"><%=topDeals.get(i).getProductDiscount()%>&#37;
 									off</span>
 							</div>

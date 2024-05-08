@@ -21,7 +21,7 @@ public class OrderDao {
 	public int insertOrder(Order order) {
 		int id = 0;
 		try {
-			String query = "insert into `order`(orderid, status, paymentType, userId) values(?, ?, ?, ?)";
+			String query = "insert into order(orderid, status, paymentType, userId) values(?, ?, ?, ?)";
 			PreparedStatement psmt = this.con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			psmt.setString(1, order.getOrderId());
@@ -50,7 +50,7 @@ public class OrderDao {
 	public List<Order> getAllOrderByUserId(int uid){
 		List<Order> list = new ArrayList<Order>();
 		try {
-			String query = "select * from `order` where userId = ?";
+			String query = "select * from order where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setInt(1, uid);
 			ResultSet rs = psmt.executeQuery();
@@ -73,7 +73,7 @@ public class OrderDao {
 	public Order getOrderById(int id){
 		Order order = new Order();
 		try {
-			String query = "select * from `order` where id = ?";
+			String query = "select * from order where id = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setInt(1, id);
 			ResultSet rs = psmt.executeQuery();
@@ -93,7 +93,7 @@ public class OrderDao {
 	public List<Order> getAllOrder(){
 		List<Order> list = new ArrayList<Order>();
 		try {
-			String query = "select * from `order`";
+			String query = "select * from order";
 			Statement statement = this.con.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			while (rs.next()) {
@@ -114,7 +114,7 @@ public class OrderDao {
 	}
 	public void updateOrderStatus(int oid, String status) {
 		try {
-			String query = "update `order` set status = ? where id = ?";
+			String query = "update order set status = ? where id = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setString(1, status);
 			psmt.setInt(2, oid);

@@ -121,7 +121,7 @@ public class CartDao {
 
 	public void removeAllProduct() {
 		try {
-			String query = "delete from cart";
+			String query = "delete * from cart";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.executeUpdate();
 		} catch (Exception e) {

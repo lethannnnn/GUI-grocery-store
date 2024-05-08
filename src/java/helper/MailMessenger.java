@@ -4,7 +4,7 @@ public class MailMessenger {
 
 	public static void successfullyRegister(String userName, String userEmail) {
 
-		String subject = "Welcome to EazyDeals - Successful Registration!";
+		String subject = "Welcome to TARgrocery - Successful Registration!";
 		String body = "Hi " + userName
 				+ ",<p>Congratulations and a warm welcome to EazyDeals! We are thrilled to have you as a part of our growing community. Thank you for choosing us for your online shopping needs.</p>"
 				+ "<p>Your registration was successful, and we are excited to inform you that you are now a valued member of our platform. With EazyDeals, you'll discover a wide selection of products and exciting deals that cater to your interests and preferences."

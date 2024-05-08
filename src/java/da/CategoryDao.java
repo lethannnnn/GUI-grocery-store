@@ -28,11 +28,11 @@ public class CategoryDao {
 
             int rowsAffected = psmt.executeUpdate();
             if (rowsAffected > 0) {
-                flag = true; // Set flag to true if insertion is successful
+                flag = true;
             }
 
         } catch (SQLException e) {
-            e.printStackTrace(); // Print stack trace for debugging
+            e.printStackTrace();
         }
         return flag;
     }

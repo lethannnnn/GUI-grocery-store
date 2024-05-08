@@ -39,7 +39,7 @@ public class Mail {
             message.setContent(body, "text/html");
 
             Transport.send(message);
-            //System.out.println("Message Sent Successfully!");
+            System.out.println("Message Sent Successfully!");
 
         } catch (Exception e) {
             e.printStackTrace();

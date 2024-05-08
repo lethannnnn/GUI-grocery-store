@@ -42,12 +42,12 @@ if (activeAdmin == null) {
 			for (User u : userList) {
 			%>
 			<tr>
-				<td><%=u.getUserName()%></td>
-				<td><%=u.getUserEmail()%></td>
-				<td><%=u.getUserPhone()%></td>
-				<td><%=u.getUserGender()%></td>
-				<td><%=userDao.getUserAddress(u.getUserId())%></td>
-				<td><%=u.getDateTime()%></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getUserName()%></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getUserEmail()%></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getUserPhone()%></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getUserGender()%></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=userDao.getUserAddress(u.getUserId())%></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getDateTime()%></td>
 				<td><a href="UpdateUserServlet?operation=deleteUser&uid=<%=u.getUserId()%>" role="button" class="btn btn-danger">Remove</a></td>
 			</tr>
 			<%

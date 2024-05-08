@@ -79,10 +79,10 @@ if (activeUser == null) {
 						Product prod = productDao.getProductsByProductId(c.getProductId());						
 					%>
 					<tr class="text-center">
-						<td><img src="Product_imgs\<%=prod.getProductImages()%>"
+						<td><img src="tmp/<%=prod.getProductImages()%>"
 							style="width: 50px; height: 50px; width: auto;"></td>
-						<td class="text-start"><%=prod.getProductName()%></td>
-						<td>&#8377;<%=prod.getProductPriceAfterDiscount()%></td>
+                                                <td class="text-start">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=prod.getProductName()%></td>
+                                                <td>&#36;<%= prod.getProductPriceAfterDiscount()%></td>
 						<td><a
 							href="CartOperationServlet?cid=<%=c.getCartId()%>&opt=1"
 							role="button" class="btn btn-light"
@@ -103,7 +103,7 @@ if (activeUser == null) {
 							<%} %>
 						</td>
 
-						<td>&#8377;<%=c.getQuantity() * prod.getProductPriceAfterDiscount()%></td>
+						<td>&#36;<%=c.getQuantity() * prod.getProductPriceAfterDiscount()%></td>
 						<td><a
 							href="CartOperationServlet?cid=<%=c.getCartId()%>&opt=3"
 							class="btn btn-secondary" role="button">Remove</a></td>
@@ -114,8 +114,8 @@ if (activeUser == null) {
 					%>
 					<tr>
 						<td class="text-end" colspan="8"><h4 class='pe-5'>
-								Total Amount : &#8377;
-								<%=totalPrice%></h4></td>
+								Total Amount : &#36;
+								<%= String.format("%.2f",totalPrice)%></h4></td>
 					</tr>
 				</tbody>
 			</table>

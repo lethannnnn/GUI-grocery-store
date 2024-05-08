@@ -27,10 +27,14 @@ public class ChangePasswordServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String referrer = request.getHeader("referer");
-		UserDao userDao = new UserDao(ConnectionProvider.getConnection());
+            
+                
+		String referrer = request.getHeader("referer");		
 		HttpSession session = request.getSession();
-		
+
+                try{
+                    UserDao userDao = new UserDao(ConnectionProvider.getConnection());
+                
 		if(referrer.contains("forgot_password")) {
 			String email = request.getParameter("email").trim();
 			List<String> list = userDao.getAllEmail();
@@ -74,6 +78,9 @@ public class ChangePasswordServlet extends HttpServlet {
 			session.setAttribute("message", message);
 			response.sendRedirect("login.jsp");
 		}
-	}
+	}catch (Exception e) {
+                e.printStackTrace();
 
+        }
+    }
 }
