@@ -51,7 +51,7 @@ public class UpdateUserServlet extends HttpServlet {
 				user.setUserPincode(userPincode);
 				user.setUserState(userState);
 
-				userDao.updateUserAddresss(user);
+				userDao.updateUserAddress(user);
 				session.setAttribute("activeUser", user);
 				response.sendRedirect("checkout.jsp");
 

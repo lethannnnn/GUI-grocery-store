@@ -52,6 +52,10 @@
         <servlet-name>AddOperationServletp</servlet-name>
         <servlet-class>servlets.AddOperationServletp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerLoginServlet</servlet-name>
+        <servlet-class>servlets.ManagerLoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -104,6 +108,10 @@
     <servlet-mapping>
         <servlet-name>AddOperationServletp</servlet-name>
         <url-pattern>/AddOperationServletp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerLoginServlet</servlet-name>
+        <url-pattern>/ManagerLoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

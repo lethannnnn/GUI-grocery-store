@@ -26,8 +26,8 @@ public class AdminDao {
                                                
 			psmt.setString(1, admin.getName());
 			psmt.setString(2, admin.getEmail());
-			psmt.setString(3, admin.getPassword());
-			psmt.setString(4, admin.getPhone());
+			psmt.setString(4, admin.getPassword());
+			psmt.setString(3, admin.getPhone());
                         
 			psmt.executeUpdate();
 			flag = true;

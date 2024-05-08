@@ -49,7 +49,9 @@ public class RegisterServlet extends HttpServlet {
 				message = new Message("Registration Successful !!", "success", "alert-success");
 				MailMessenger.successfullyRegister(userName, userEmail);
 			} else {
-				message = new Message("Something went wrong! Try again!!", "error", "alert-danger");
+                                String username = request.getParameter("user_name");
+                                String errorMessage = "Invalid details! Try again!! Your usernameis: " + username;
+                                message = new Message(errorMessage, "error", "alert-danger");
 			}
 			session.setAttribute("message", message);
 			response.sendRedirect("register.jsp");

@@ -23,7 +23,7 @@ public class UserDao {
 		boolean flag = false;
 
 		try {
-			String query = "insert into user(name, email, password, phone, gender, address, city, pincode, state) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "insert into Customer(userName, userEmail, userPassword, userPhone, userGender, userAddress, userCity, userPincode, userState) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setString(1, user.getUserName());
 			psmt.setString(2, user.getUserEmail());
@@ -47,7 +47,7 @@ public class UserDao {
 	public User getUserByEmailPassword(String userEmail, String userPassword) {
 		User user = null;
 		try {
-			String query = "select * from user where email = ? and password = ?";
+                        String query = "select * from Customer where useremail = ? and userpassword = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setString(1, userEmail);
 			psmt.setString(2, userPassword);
@@ -56,17 +56,17 @@ public class UserDao {
 			while (set.next()) {
 				user = new User();
 
-				user.setUserId(set.getInt("userid"));
-				user.setUserName(set.getString("name"));
-				user.setUserEmail(set.getString("email"));
-				user.setUserPassword(set.getString("password"));
-				user.setUserPhone(set.getString("phone"));
-				user.setUserGender(set.getString("gender"));
-				user.setDateTime(set.getTimestamp("registerdate"));
-				user.setUserAddress(set.getString("address"));
-				user.setUserCity(set.getString("city"));
-				user.setUserPincode(set.getString("pincode"));
-				user.setUserState(set.getString("state"));
+				user.setUserId(set.getInt("userId"));
+				user.setUserName(set.getString("userName"));
+				user.setUserEmail(set.getString("userEmail"));
+				user.setUserPassword(set.getString("userPassword"));
+				user.setUserPhone(set.getString("userPhone"));
+				user.setUserGender(set.getString("userGender"));
+				user.setDateTime(set.getTimestamp("dateTime"));
+				user.setUserAddress(set.getString("userAddress"));
+				user.setUserCity(set.getString("userCity"));
+				user.setUserPincode(set.getString("userPincode"));
+				user.setUserState(set.getString("userState"));
 			}
 
 		} catch (Exception e) {
@@ -79,22 +79,22 @@ public class UserDao {
 	public List<User> getAllUser() {
 		List<User> list = new ArrayList<User>();
 		try {
-			String query = "select * from user";
+			String query = "select * from Customer";
 			Statement statement = this.con.createStatement();
 			ResultSet set = statement.executeQuery(query);
 			while (set.next()) {
 				User user = new User();
-				user.setUserId(set.getInt("userid"));
-				user.setUserName(set.getString("name"));
-				user.setUserEmail(set.getString("email"));
-				user.setUserPassword(set.getString("password"));
-				user.setUserPhone(set.getString("phone"));
-				user.setUserGender(set.getString("gender"));
-				user.setDateTime(set.getTimestamp("registerdate"));
-				user.setUserAddress(set.getString("address"));
-				user.setUserCity(set.getString("city"));
-				user.setUserPincode(set.getString("pincode"));
-				user.setUserState(set.getString("state"));
+				user.setUserId(set.getInt("userId"));
+				user.setUserName(set.getString("userName"));
+				user.setUserEmail(set.getString("userEmail"));
+				user.setUserPassword(set.getString("userPassword"));
+				user.setUserPhone(set.getString("userPhone"));
+				user.setUserGender(set.getString("userGender"));
+				user.setDateTime(set.getTimestamp("dateTime"));
+				user.setUserAddress(set.getString("userAddress"));
+				user.setUserCity(set.getString("userCity"));
+				user.setUserPincode(set.getString("userPincode"));
+				user.setUserState(set.getString("userState"));
 				
 				list.add(user);
 			}
@@ -104,9 +104,9 @@ public class UserDao {
 		return list;
 	}
 
-	public void updateUserAddresss(User user) {
+	public void updateUserAddress(User user) {
 		try {
-			String query = "update user set address = ?, city = ?, pincode = ?, state = ? where userid = ?";
+			String query = "update Customer set userAddress = ?, userCity = ?, userPincode = ?, userState = ? where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setString(1, user.getUserAddress());
 			psmt.setString(2, user.getUserCity());
@@ -120,12 +120,12 @@ public class UserDao {
 			e.printStackTrace();
 		}
 	}
-	public void updateUserPasswordByEmail(String password, String mail) {
+	public void updateUserPasswordByEmail(String userPassword, String userEmail) {
 		try {
-			String query = "update user set password = ? where email = ?";
+			String query = "update Customer set userPassword = ? where userEmail = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setString(1, password);
-			psmt.setString(2, mail);
+			psmt.setString(1, userPassword);
+			psmt.setString(2, userEmail);
 			
 			psmt.executeUpdate();
 			
@@ -136,7 +136,7 @@ public class UserDao {
 
 	public void updateUser(User user) {
 		try {
-			String query = "update user set name = ?, email = ?, phone = ?, gender = ?, address = ?, city = ?, pincode = ?, state = ? where userid = ?";
+			String query = "update Customer set userName = ?, userEmail = ?, userPhone = ?, userGender = ?, userAddress = ?, userCity = ?, userPincode = ?, uesrState = ? where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setString(1, user.getUserName());
 			psmt.setString(2, user.getUserEmail());
@@ -155,85 +155,72 @@ public class UserDao {
 		}
 	}
 
-	public int userCount() {
-		int count = 0;
+	public String getUserAddress(int userId) {
+		String userAddress = "";
 		try {
-			String query = "select count(*) from user";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
-			count = rs.getInt(1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return count;
-	}
-
-	public String getUserAddress(int uid) {
-		String address = "";
-		try {
-			String query = "select address, city, pincode, state from user where userid = ?";
+			String query = "select userAddress, userCity, userPincode, userState from Customer where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setInt(1, uid);
+			psmt.setInt(1, userId);
 
 			ResultSet rs = psmt.executeQuery();
 			rs.next();
-			address = rs.getString(1) + ", " + rs.getString(2) + "-" + rs.getString(3) + ", " + rs.getString(4);
+			userAddress = rs.getString(1) + ", " + rs.getString(2) + "-" + rs.getString(3) + ", " + rs.getString(4);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return address;
+		return userAddress;
 	}
-	public String getUserName(int uid) {
-		String name = "";
+	public String getUserName(int userId) {
+		String userName = "";
 		try {
-			String query = "select name from user where userid = ?";
+			String query = "select userName from Customer where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setInt(1, uid);
+			psmt.setInt(1, userId);
 			
 			ResultSet rs = psmt.executeQuery();
 			rs.next();
-			name = rs.getString(1);
+			userName = rs.getString(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return name;
+		return userName;
 	}
-	public String getUserEmail(int uid) {
-		String email = "";
+	public String getUserEmail(int userId) {
+		String userEmail = "";
 		try {
-			String query = "select email from user where userid = ?";
+			String query = "select userEmail from Customer where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setInt(1, uid);
+			psmt.setInt(1, userId);
 			
 			ResultSet rs = psmt.executeQuery();
 			rs.next();
-			email = rs.getString(1);
+			userEmail = rs.getString(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return email;
+		return userEmail;
 	}
-	public String getUserPhone(int uid) {
-		String phone = "";
+	public String getUserPhone(int userId) {
+		String userPhone = "";
 		try {
-			String query = "select phone from user where userid = ?";
+			String query = "select userPhone from Customer where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setInt(1, uid);
+			psmt.setInt(1, userId
+                        );
 			
 			ResultSet rs = psmt.executeQuery();
 			rs.next();
-			phone = rs.getString(1);
+			userPhone = rs.getString(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return phone;
+		return userPhone;
 	}
-	public void deleteUser(int uid) {
+	public void deleteUser(int userId) {
 		try {
-			String query = "delete from user where userid = ?";
+			String query = "delete from Customer where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setInt(1, uid);
+			psmt.setInt(1, userId);
 			psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -242,7 +229,7 @@ public class UserDao {
 	public List<String> getAllEmail() {
 		List<String> list = new ArrayList<>();
 		try {
-			String query = "select email from user";
+			String query = "select userEmail from Customer";
 			Statement statement = this.con.createStatement();
 			ResultSet set = statement.executeQuery(query);
 			while (set.next()) {

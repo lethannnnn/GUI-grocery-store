@@ -112,12 +112,12 @@ a {
 					</a>
 				</div>
 				<div class="col-md-4">
-					<a href="display_admin.jsp">
+					<a href="manager_login.jsp">
 						<div class="card text-bg-light mb-3 text-center">
 							<div class="card-body">
 								<img src="Images/add-admin.png" style="max-width: 80px;"
 									class="img-fluid">
-								<h4 class="card-title mt-3">Admin</h4>
+								<h4 class="card-title mt-3">Manager</h4>
 							</div>
 						</div>
 					</a>
