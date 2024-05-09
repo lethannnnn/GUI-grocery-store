@@ -256,4 +256,20 @@ public void updateUser(User user) {
 		}
 		return list;
 	}
+        
+         public int getUserIdByUserName(String userName) {
+        int userId = -1; // Default value if user is not found
+        try {
+            String query = "SELECT userId FROM Customer WHERE userName = ?";
+            PreparedStatement pstmt = this.con.prepareStatement(query);
+            pstmt.setString(1, userName);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                userId = rs.getInt("userId");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userId;
+    }
 }

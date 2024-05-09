@@ -29,9 +29,11 @@ public class RegisterServlet extends HttpServlet {
             String userCity = request.getParameter("city");
             String userPincode = request.getParameter("pincode");
             String userState = request.getParameter("state");
-
+            String securityques = request.getParameter("security_question");
+            String securityans = request.getParameter("security_answer");
+            
             UserDao userDao = new UserDao(ConnectionProvider.getConnection());
-
+                       
             // Check if the username is already taken
             if (userDao.isUserExists(userName)) {
                 String errorMessage = "Username is already taken. Please use another username.";
