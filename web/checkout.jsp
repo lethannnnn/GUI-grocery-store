@@ -109,11 +109,11 @@ String from = (String)session.getAttribute("from");
 						<h4>Price Details</h4>
 						<hr>
 						<%
-						if (from.trim().equals("cart")) {
-							CartDao cartDao = new CartDao(ConnectionProvider.getConnection());
-							int totalProduct = cartDao.getCartCountByUserId(user.getUserId());
-							float totalPrice = (float) session.getAttribute("totalPrice");
-						%>
+                                                if (from.trim().equals("cart")) {
+                                                    CartDao cartDao = new CartDao(ConnectionProvider.getConnection());
+                                                    int totalProduct = cartDao.getCartCountByUserId(activeUser.getUserId());
+                                                    float totalPrice = (Float) session.getAttribute("totalPrice");
+                                                %>
 						<table class="table table-borderless">
 							<tr>
 								<td>Total Item</td>
@@ -121,29 +121,29 @@ String from = (String)session.getAttribute("from");
 							</tr>
 							<tr>
 								<td>Total Price</td>
-								<td>&#8377; <%=totalPrice%></td>
+								<td>&#36; <%=totalPrice%></td>
 							</tr>
 							<tr>
 								<td>Delivery Charges</td>
-								<td>&#8377; 40</td>
+								<td>&#36; 40</td>
 							</tr>
 							<tr>
 								<td>Packaging Charges</td>
-								<td>&#8377; 29</td>
+								<td>&#36; 29</td>
 							</tr>
 							<tr>
 								<td><h5>Amount Payable :</h5></td>
 								<td><h5>
-										&#8377;
+										&#36;
 										<%=totalPrice + 69%></h5></td>
 							</tr>
 						</table>
 						<%
-						} else {
-							ProductDao productDa = new ProductDao(ConnectionProvider.getConnection());
-							int pid = (int) session.getAttribute("pid");
-							float price = productDa.getProductPriceById(pid);
-						%>
+                                                } else {
+                                                    ProductDao productDa = new ProductDao(ConnectionProvider.getConnection());
+                                                    int pid = (Integer) session.getAttribute("pid");
+                                                    float price = productDa.getProductPriceById(pid);
+                                                %>
 						<table class="table table-borderless">
 							<tr>
 								<td>Total Item</td>
@@ -151,20 +151,20 @@ String from = (String)session.getAttribute("from");
 							</tr>
 							<tr>
 								<td>Total Price</td>
-								<td>&#8377; <%=price%></td>
+								<td>&#36; <%=price%></td>
 							</tr>
 							<tr>
 								<td>Delivery Charges</td>
-								<td>&#8377; 40</td>
+								<td>&#36; 40</td>
 							</tr>
 							<tr>
 								<td>Packaging Charges</td>
-								<td>&#8377; 29</td>
+								<td>&#36; 29</td>
 							</tr>
 							<tr>
 								<td><h5>Amount Payable :</h5></td>
 								<td><h5>
-										&#8377;
+										&#36;
 										<%=price + 69%></h5></td>
 							</tr>
 						</table>
@@ -213,44 +213,20 @@ String from = (String)session.getAttribute("from");
 							<label class="form-label fw-bold">State</label> <select
 								name="state" class="form-select">
 								<option selected>--Select State--</option>
-								<option value="Andaman &amp; Nicobar Islands">Andaman
-									&amp; Nicobar Islands</option>
-								<option value="Andhra Pradesh">Andhra Pradesh</option>
-								<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-								<option value="Assam">Assam</option>
-								<option value="Bihar">Bihar</option>
-								<option value="Chandigarh">Chandigarh</option>
-								<option value="Chhattisgarh">Chhattisgarh</option>
-								<option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra
-									&amp; Nagar Haveli &amp; Daman &amp; Diu</option>
-								<option value="Delhi">Delhi</option>
-								<option value="Goa">Goa</option>
-								<option value="Gujarat">Gujarat</option>
-								<option value="Haryana">Haryana</option>
-								<option value="Himachal Pradesh">Himachal Pradesh</option>
-								<option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option>
-								<option value="Jharkhand">Jharkhand</option>
-								<option value="Karnataka">Karnataka</option>
-								<option value="Kerala">Kerala</option>
-								<option value="Ladakh">Ladakh</option>
-								<option value="Lakshadweep">Lakshadweep</option>
-								<option value="Madhya Pradesh">Madhya Pradesh</option>
-								<option value="Maharashtra">Maharashtra</option>
-								<option value="Manipur">Manipur</option>
-								<option value="Meghalaya">Meghalaya</option>
-								<option value="Mizoram">Mizoram</option>
-								<option value="Nagaland">Nagaland</option>
-								<option value="Odisha">Odisha</option>
-								<option value="Puducherry">Puducherry</option>
-								<option value="Punjab">Punjab</option>
-								<option value="Rajasthan">Rajasthan</option>
-								<option value="Sikkim">Sikkim</option>
-								<option value="Tamil Nadu">Tamil Nadu</option>
-								<option value="Telangana">Telangana</option>
-								<option value="Tripura">Tripura</option>
-								<option value="Uttarakhand">Uttarakhand</option>
-								<option value="Uttar Pradesh">Uttar Pradesh</option>
-								<option value="West Bengal">West Bengal</option>
+										<option value="Perlis">Perlis</option>
+										<option value="Kedah">Kedah</option>
+										<option value="PulauPinang">Pulau Pinang</option>
+										<option value="Perak">Perak</option>
+										<option value="Selangor">Selangor</option>
+										<option value="KualaLumpur">Kuala Lumpur</option>
+										<option value="NegeriSembilan">Negeri Sembilan</option>
+										<option value="Melaka">Melaka</option>
+										<option value="Johor">Johor</option>
+										<option value="Pahang">Pahang</option>
+										<option value="Terengganu">Terengganu</option>
+										<option value="Kelantan">Kelantan</option>
+										<option value="Sarawak">Sarawak</option>
+										<option value="Sabah">Sabah</option>
 							</select>
 						</div>
 					</div>
