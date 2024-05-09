@@ -55,6 +55,7 @@ Product product = (Product) productDao.getProductsByProductId(productId);
 					<span class="real-price">&#36;<%=product.getProductPriceAfterDiscount()%></span>&ensp;
 					<span class="product-price">&#36;<%=product.getProductPrice()%></span>&ensp;
 					<span class="product-discount"><%=product.getProductDiscount()%>&#37;off</span><br>
+                                        <span class="product-quantity"><b>Quantity : </b><%=product.getProductQunatity()%></span><br>
 					<span class="fs-5"><b>Status : </b></span> <span id="availability">
 						<%
 						if (product.getProductQunatity() > 0) {

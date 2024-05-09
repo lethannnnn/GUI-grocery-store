@@ -8,27 +8,27 @@ public class Order {
 	private String orderId;
 	private String status;
 	private Timestamp date;
-	private String payementType;
+	private String paymentType;
 	private int userId;
 	
 	public Order() {
 		super();
 	}
 
-	public Order(String orderId, String status, Timestamp date, String payementType, int userId) {
+	public Order(String orderId, String status, Timestamp date, String paymentType, int userId) {
 		super();
 		this.orderId = orderId;
 		this.status = status;
 		this.date = date;
-		this.payementType = payementType;
+		this.paymentType = paymentType;
 		this.userId = userId;
 	}
 
-	public Order(String orderId, String status, String payementType, int userId) {
+	public Order(String orderId, String status, String paymentType, int userId) {
 		super();
 		this.orderId = orderId;
 		this.status = status;
-		this.payementType = payementType;
+		this.paymentType = paymentType;
 		this.userId = userId;
 	}
 
@@ -64,12 +64,12 @@ public class Order {
 		this.date = date;
 	}
 
-	public String getPayementType() {
-		return payementType;
+	public String getPaymentType() {
+		return paymentType;
 	}
 
-	public void setPayementType(String payementType) {
-		this.payementType = payementType;
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
 	}
 
 	public int getUserId() {

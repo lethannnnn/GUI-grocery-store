@@ -25,7 +25,7 @@ label {
 							<img src="Images/admin.png" style="max-width: 100px;"
 								class="img-fluid">
 						</div>
-						<h3 class="text-center">Login</h3>
+						<h3 class="text-center">Admin Login</h3>
 						<%@include file="Components/alert_message.jsp"%>
 					</div>
 					<div class="card-body px-5">

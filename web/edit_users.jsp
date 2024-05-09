@@ -5,15 +5,7 @@
 <%@page errorPage="error_exception.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-Admin activeAdmin = (Admin) session.getAttribute("activeAdmin");
-if (activeAdmin == null) {
-	Message message = new Message("You are not logged in! Login first!!", "error", "alert-danger");
-	session.setAttribute("message", message);
-	response.sendRedirect("adminLogin.jsp");
-	return;
-}
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +35,7 @@ if (activeAdmin == null) {
                             
 			%>
 			<tr class="text-center">
+
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getUserName()%></td>
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getUserEmail()%></td>
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getUserPhone()%></td>
@@ -50,9 +43,11 @@ if (activeAdmin == null) {
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=userDao.getUserAddress(u.getUserId())%></td>
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getDateTime()%></td>
                                
-				<td><a href="UpdateUserServlet?operation=deleteUser&uid=<%=u.getUserId()%>" role="button" class="btn btn-danger">Remove</a></td>
+				<td><a href="EditUserDetailsServlet?userId=<%=u.getUserId()%>&operation=updateUserDetails" role="button" class="btn btn-danger">Update</a></td>
+
                         </tr>
-			<%
+                                <%
+			
 			}
 			%>
 		</table>

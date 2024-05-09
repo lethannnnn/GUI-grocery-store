@@ -102,25 +102,8 @@ label {
 										type="password" name="user_password"
 										placeholder="Enter Password" class="form-control" required>
 								</div>
-                                                        </div>
+							</div>
 
-                                                            <div class="row">
-                                                                <div class="col-md-6 mt-2">
-                                                                    <label class="form-label">Security Question</label>
-                                                                    <select name="security_question" class="form-select">
-                                                                        <option selected>--Select Security Question--</option>
-                                                                        <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
-                                                                        <option value="What is the name of your first pet?">What is the name of your first pet?</option>
-                                                                        <option value="What city were you born in?">What city were you born in?</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-md-6 mt-2">
-                                                                    <label class="form-label">Security Answer</label>
-                                                                    <input type="text" name="security_answer" placeholder="Enter Security Answer" class="form-control" required>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                
 							<div id="submit-btn" class="container text-center mt-4">
 								<button type="submit" class="btn btn-outline-primary me-3">Submit</button>
 								<button type="reset" class="btn btn-outline-primary">Reset</button>
@@ -131,7 +114,7 @@ label {
 										style="text-decoration: none"> Sign in</a>
 								</h6>
 							</div>
-						
+						</form>
 					</div>
 				</div>
 			</div>

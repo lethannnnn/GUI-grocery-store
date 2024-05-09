@@ -68,6 +68,10 @@
         <servlet-name>SecurityServlet</servlet-name>
         <servlet-class>servlets.SecurityServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditUserDetailsServlet</servlet-name>
+        <servlet-class>servlets.EditUserDetailsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -132,6 +136,10 @@
     <servlet-mapping>
         <servlet-name>SecurityServlet</servlet-name>
         <url-pattern>/SecurityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserDetailsServlet</servlet-name>
+        <url-pattern>/EditUserDetailsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -26,7 +26,7 @@ public class OrderDao {
 			
 			psmt.setString(1, order.getOrderId());
 			psmt.setString(2, order.getStatus());
-			psmt.setString(3, order.getPayementType());
+			psmt.setString(3, order.getPaymentType());
 			psmt.setInt(4, order.getUserId());
 			
 			int affectedRows = psmt.executeUpdate();
@@ -60,7 +60,7 @@ public class OrderDao {
 				order.setOrderId(rs.getString("orderid"));
 				order.setStatus(rs.getString("status"));
 				order.setDate(rs.getTimestamp("date"));
-				order.setPayementType(rs.getString("paymentType"));
+				order.setPaymentType(rs.getString("paymentType"));
 				order.setUserId(uid);
 
 				list.add(order);
@@ -82,7 +82,7 @@ public class OrderDao {
 				order.setOrderId(rs.getString("orderid"));
 				order.setStatus(rs.getString("status"));
 				order.setDate(rs.getTimestamp("date"));
-				order.setPayementType(rs.getString("paymentType"));
+				order.setPaymentType(rs.getString("paymentType"));
 				order.setUserId(rs.getInt("userId"));
 			}
 		} catch (Exception e) {
@@ -102,7 +102,7 @@ public class OrderDao {
 				order.setOrderId(rs.getString("orderid"));
 				order.setStatus(rs.getString("status"));
 				order.setDate(rs.getTimestamp("date"));
-				order.setPayementType(rs.getString("paymentType"));
+				order.setPaymentType(rs.getString("paymentType"));
 				order.setUserId(rs.getInt("userId"));
 				
 				list.add(order);
