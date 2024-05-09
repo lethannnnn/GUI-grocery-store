@@ -2,6 +2,7 @@
 <%@page import="domain.Admin"%>
 <%@page import="domain.Message"%>
 <%@page import="da.AdminDao"%>
+<%@page import="da.ManagerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page errorPage="error_exception.jsp"%>
@@ -55,13 +56,24 @@ a {
                 
 		<div class="container">
 			<div class="row px-3">
-				<div class="col-md-4 offset-md-2">
+				<div class="col-md-4">
 					<a href="report.jsp">
 						<div class="card text-bg-light mb-3 text-center">
 							<div class="card-body">
 								<img src="Images/admin.png" style="max-width: 80px;"
 									class="img-fluid">
 								<h4 class="card-title mt-3">Report</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+                                <div class="col-md-4">
+					<a href="edit_users.jsp">
+						<div class="card text-bg-light mb-3 text-center">
+							<div class="card-body">
+								<img src="Images/add-admin.png" style="max-width: 80px;"
+									class="img-fluid">
+								<h4 class="card-title mt-3">Edit users</h4>
 							</div>
 						</div>
 					</a>

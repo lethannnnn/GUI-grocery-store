@@ -18,6 +18,7 @@ import domain.Message;
 import helper.ConnectionProvider;
 import helper.MailMessenger;
 import javax.servlet.http.HttpSession;
+import java.lang.NoClassDefFoundError;
 /**
  *
  * @author Ethan

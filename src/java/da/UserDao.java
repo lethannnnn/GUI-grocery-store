@@ -12,38 +12,53 @@ import domain.User;
 
 public class UserDao {
 
-	private Connection con;
+    private Connection con;
 
-	public UserDao(Connection con) {
-		super();
-		this.con = con;
-	}
+    public UserDao(Connection con) {
+        super();
+        this.con = con;
+    }
 
-	public boolean saveUser(User user) {
-		boolean flag = false;
+    public boolean saveUser(User user) {
+        boolean flag = false;
 
-		try {
-			String query = "insert into Customer(userName, userEmail, userPassword, userPhone, userGender, userAddress, userCity, userPincode, userState) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setString(1, user.getUserName());
-			psmt.setString(2, user.getUserEmail());
-			psmt.setString(3, user.getUserPassword());
-			psmt.setString(4, user.getUserPhone());
-			psmt.setString(5, user.getUserGender());
-			psmt.setString(6, user.getUserAddress());
-			psmt.setString(7, user.getUserCity());
-			psmt.setString(8, user.getUserPincode());
-			psmt.setString(9, user.getUserState());
+        try {
+            String query = "insert into Customer(userName, userEmail, userPassword, userPhone, userGender, userAddress, userCity, userPincode, userState) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement psmt = this.con.prepareStatement(query);
+            psmt.setString(1, user.getUserName());
+            psmt.setString(2, user.getUserEmail());
+            psmt.setString(3, user.getUserPassword());
+            psmt.setString(4, user.getUserPhone());
+            psmt.setString(5, user.getUserGender());
+            psmt.setString(6, user.getUserAddress());
+            psmt.setString(7, user.getUserCity());
+            psmt.setString(8, user.getUserPincode());
+            psmt.setString(9, user.getUserState());
 
-			psmt.executeUpdate();
-			flag = true;
+            psmt.executeUpdate();
+            flag = true;
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return flag;
-	}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
 
+    public boolean isUserExists(String userName) {
+        boolean userExists = false;
+        try {
+            String query = "SELECT * FROM Customer WHERE userName = ?";
+            PreparedStatement pstmt = this.con.prepareStatement(query);
+            pstmt.setString(1, userName);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                userExists = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userExists;
+    }
 	public User getUserByEmailPassword(String userEmail, String userPassword) {
 		User user = null;
 		try {
@@ -134,26 +149,27 @@ public class UserDao {
 		}
 	}
 
-	public void updateUser(User user) {
-		try {
-			String query = "update Customer set userName = ?, userEmail = ?, userPhone = ?, userGender = ?, userAddress = ?, userCity = ?, userPincode = ?, uesrState = ? where userId = ?";
-			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setString(1, user.getUserName());
-			psmt.setString(2, user.getUserEmail());
-			psmt.setString(3, user.getUserPhone());
-			psmt.setString(4, user.getUserGender());
-			psmt.setString(5, user.getUserAddress());
-			psmt.setString(6, user.getUserCity());
-			psmt.setString(7, user.getUserPincode());
-			psmt.setString(8, user.getUserState());
-			psmt.setInt(9, user.getUserId());
+public void updateUser(User user) {
+    try {
+        String query = "update Customer set userName = ?, userEmail = ?, userPhone = ?, userGender = ?, userAddress = ?, userCity = ?, userPincode = ?, userState = ? where userId = ?";
+        PreparedStatement psmt = this.con.prepareStatement(query);
+        psmt.setString(1, user.getUserName());
+        psmt.setString(2, user.getUserEmail());
+        psmt.setString(3, user.getUserPhone());
+        psmt.setString(4, user.getUserGender());
+        psmt.setString(5, user.getUserAddress());
+        psmt.setString(6, user.getUserCity());
+        psmt.setString(7, user.getUserPincode());
+        psmt.setString(8, user.getUserState());
+        psmt.setInt(9, user.getUserId());
 
-			psmt.executeUpdate();
+        psmt.executeUpdate();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
 
 	public String getUserAddress(int userId) {
 		String userAddress = "";

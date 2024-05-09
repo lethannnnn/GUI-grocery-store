@@ -22,11 +22,12 @@ label {
         <div class="row">
             <div class="col-md-6 mt-2">
                 <label class="form-label">Your name</label>
-                <input type="text" name="name" class="form-control" placeholder="First and last name" value="<%=user1.getUserName()%>" disabled>
+                <input type="text" class="form-control" value="<%=user1.getUserName()%>" disabled>
+
             </div>
             <div class="col-md-6 mt-2">
                 <label class="form-label">Email</label>
-                <input type="email" name="email" placeholder="Email address" class="form-control" value="<%=user1.getUserEmail()%>" disabled>
+                <input type="email" class="form-control" value="<%=user1.getUserEmail()%>" disabled>
             </div>
         </div>
         <div class="row">

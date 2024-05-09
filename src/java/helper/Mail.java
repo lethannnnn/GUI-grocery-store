@@ -20,8 +20,8 @@ public class Mail {
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.port", "587");
 
-        String emailId = ""; 	     // admin/company mail-id
-        String password = "";		// generated password
+        String emailId = "yihanlam2004@gmail.com"; 	     // admin/company mail-id
+        String password = "blppdbuzitcauior";		// generated password
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

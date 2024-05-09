@@ -47,8 +47,8 @@ String from = (String)session.getAttribute("from");
 							StringBuilder str = new StringBuilder();
 							str.append(user.getUserAddress() + ", ");
 							str.append(user.getUserCity() + ", ");
-							str.append(user.getUserCity() + ", ");
-							str.append(user.getUserPincode());
+							str.append(user.getUserPincode() + ", ");
+							str.append(user.getUserState());
 							out.println(str);
 							%>
 							<br>
@@ -65,38 +65,29 @@ String from = (String)session.getAttribute("from");
 								<h4>Payment Options</h4>
 							</div>
 						</div>
-						<form action="OrderOperationServlet" method="post">
-							<div class="form-check mt-2">
-								<input class="form-check-input" type="radio" name="payementMode"
-									value="Card Payment" required><label class="form-check-label">Credit
-									/Debit /ATM card</label><br>
-								<div class="mb-3">
-
-									<input class="form-control mt-3" type="number"
-										placeholder="Enter card number" name="cardno">
-									<div class="row gx-5">
-										<div class="col mt-3">
-											<input class="form-control" type="number"
-												placeholder="Enter CVV" name="cvv">
-										</div>
-										<div class="col mt-3">
-											<input class="form-control" type="text"
-												placeholder="Valid through i.e '07/23'">
-										</div>
-									</div>
-									<input class="form-control mt-3" type="text"
-										placeholder="Enter card holder name" name="name">
-								</div>
-								<input class="form-check-input" type="radio" name="payementMode"
-									value="Cash on Delivery"><label
-									class="form-check-label">Cash on Delivery</label>
-							</div>
-							<div class="text-end">
-								<button type="submit"
-									class="btn btn-lg btn-outline-primary mt-3">Place
-									Order</button>
-							</div>
-						</form>
+						<form id="orderForm" action="OrderOperationServlet" method="post">
+    <div class="form-check mt-2">
+        <input class="form-check-input" type="radio" name="payementMode" value="Card Payment" required>
+        <label class="form-check-label">Credit / Debit / ATM card</label><br>
+        <div class="mb-3">
+            <input class="form-control mt-3" type="text" placeholder="Enter card number" name="cardno" id="cardno">
+            <div class="row gx-5">
+                <div class="col mt-3">
+                    <input class="form-control" type="number" placeholder="Enter CVV" name="cvv" id="cvv">
+                </div>
+                <div class="col mt-3">
+                    <input class="form-control" type="text" placeholder="Valid through i.e '07/23'" id="expiry">
+                </div>
+            </div>
+            <input class="form-control mt-3" type="text" placeholder="Enter card holder name" name="name" id="name">
+        </div>
+        <input class="form-check-input" type="radio" name="payementMode" value="Cash on Delivery">
+        <label class="form-check-label">Cash on Delivery</label>
+    </div>
+    <div class="text-end">
+        <button type="button" onclick="validateForm()" class="btn btn-lg btn-outline-primary mt-3">Place Order</button>
+    </div>
+</form>
 					</div>
 				</div>
 			</div>
@@ -109,68 +100,76 @@ String from = (String)session.getAttribute("from");
 						<h4>Price Details</h4>
 						<hr>
 						<%
-                                                if (from.trim().equals("cart")) {
-                                                    CartDao cartDao = new CartDao(ConnectionProvider.getConnection());
-                                                    int totalProduct = cartDao.getCartCountByUserId(activeUser.getUserId());
-                                                    float totalPrice = (Float) session.getAttribute("totalPrice");
+                                                    if (from.trim().equals("cart")) {
+                                                        CartDao cartDao = new CartDao(ConnectionProvider.getConnection());
+                                                        int totalProduct = cartDao.getCartCountByUserId(activeUser.getUserId());
+                                                        int totalQuantity = cartDao.getTotalQuantityByUserId(activeUser.getUserId());
+                                                        float totalPrice = (Float) session.getAttribute("totalPrice");
+                                                        float deliveryCharges = totalPrice >= 1000 ? 0 : 25; // Check if totalPrice is 1000 or more
                                                 %>
-						<table class="table table-borderless">
-							<tr>
-								<td>Total Item</td>
-								<td><%=totalProduct%></td>
-							</tr>
-							<tr>
-								<td>Total Price</td>
-								<td>&#36; <%=totalPrice%></td>
-							</tr>
-							<tr>
-								<td>Delivery Charges</td>
-								<td>&#36; 40</td>
-							</tr>
-							<tr>
-								<td>Packaging Charges</td>
-								<td>&#36; 29</td>
-							</tr>
-							<tr>
-								<td><h5>Amount Payable :</h5></td>
-								<td><h5>
-										&#36;
-										<%=totalPrice + 69%></h5></td>
-							</tr>
-						</table>
+                                                <table class="table table-borderless">
+                                                    <tr>
+                                                        <td>Total Item</td>
+                                                        <td><%=totalProduct%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Quantity</td>
+                                                        <td><%=totalQuantity%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Price</td>
+                                                        <td>&#36; <%=totalPrice%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Delivery Charges</td>
+                                                        <td>&#36; <%=deliveryCharges%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Packaging Charges</td>
+                                                        <td>&#36; 29</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h5>Amount Payable :</h5></td>
+                                                        <td><h5>
+                                                                &#36;
+                                                                <%=totalPrice + 29 + deliveryCharges%></h5></td>
+                                                    </tr>
+                                                </table>
 						<%
                                                 } else {
-                                                    ProductDao productDa = new ProductDao(ConnectionProvider.getConnection());
+                                                    ProductDao productDao = new ProductDao(ConnectionProvider.getConnection());
                                                     int pid = (Integer) session.getAttribute("pid");
-                                                    float price = productDa.getProductPriceById(pid);
+                                                    float price = productDao.getProductPriceById(pid);
+                                                    float deliveryCharges = price >= 1000 ? 0 : 25; // Check if price is 1000 or more
                                                 %>
-						<table class="table table-borderless">
-							<tr>
-								<td>Total Item</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>Total Price</td>
-								<td>&#36; <%=price%></td>
-							</tr>
-							<tr>
-								<td>Delivery Charges</td>
-								<td>&#36; 40</td>
-							</tr>
-							<tr>
-								<td>Packaging Charges</td>
-								<td>&#36; 29</td>
-							</tr>
-							<tr>
-								<td><h5>Amount Payable :</h5></td>
-								<td><h5>
-										&#36;
-										<%=price + 69%></h5></td>
-							</tr>
-						</table>
-						<%
-						}
-						%>
+                                                <table class="table table-borderless">
+                                                    <tr>
+                                                        <td>Total Item</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Price</td>
+                                                        <td>&#36; <%=price%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Delivery Charges</td>
+                                                        <td>&#36; <%=deliveryCharges%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Packaging Charges</td>
+                                                        <td>&#36; 29</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h5>Amount Payable :</h5></td>
+                                                        <td><h5>
+                                                                &#36;
+                                                                <%=price + 29 + deliveryCharges%></h5></td>
+                                                    </tr>
+                                                </table>
+                                                <%
+                                                }
+                                                %>
+
 					</div>
 				</div>
 			</div>
@@ -243,3 +242,59 @@ String from = (String)session.getAttribute("from");
 
 </body>
 </html>
+<script>
+    function validateForm() {
+        var paymentMode = document.querySelector('input[name="payementMode"]:checked');
+
+        if (!paymentMode) {
+            alert("Please select one of the payment options.");
+            return false;
+        }
+
+        if (paymentMode.value === "Card Payment") {
+            var cardno = document.getElementById('cardno').value;
+            var cvv = document.getElementById('cvv').value;
+            var expiry = document.getElementById('expiry').value;
+            var name = document.getElementById('name').value;
+
+            // Card Number Validation (Assuming a 16-digit card number)
+            if (cardno.length !== 16 || isNaN(cardno)) {
+                alert("Please enter a valid 16-digit card number.");
+                return false;
+            }
+
+            // CVV Validation (Assuming a 3-digit CVV)
+            if (cvv.length !== 3 || isNaN(cvv)) {
+                alert("Please enter a valid 3-digit CVV.");
+                return false;
+            }
+
+            // Expiry Date Validation (Assuming expiry date is in MM/YY format)
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentYear = currentDate.getFullYear() % 100; // Get last two digits of the year
+            var expiryArray = expiry.split('/');
+            var expiryMonth = parseInt(expiryArray[0]);
+            var expiryYear = parseInt(expiryArray[1]);
+
+            if (expiryArray.length !== 2 || isNaN(expiryMonth) || isNaN(expiryYear)) {
+                alert("Please enter a valid expiry date in MM/YY format.");
+                return false;
+            }
+
+            if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+                alert("Please enter a valid expiry date in the future.");
+                return false;
+            }
+
+            // Card Holder Name Validation
+            if (name.trim() === "") {
+                alert("Please enter the card holder's name.");
+                return false;
+            }
+        }
+
+        // If all validations pass, submit the form
+        document.getElementById('orderForm').submit();
+    }
+</script>

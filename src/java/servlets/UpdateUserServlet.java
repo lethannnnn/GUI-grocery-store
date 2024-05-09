@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import java.io.IOException;
@@ -59,31 +55,44 @@ public class UpdateUserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (op.trim().equals("updateUser")) {
-			try {
-				String userName = request.getParameter("name");
-				String userEmail = request.getParameter("email");
-				String userPhone = request.getParameter("mobile_no");
-				String userGender = request.getParameter("gender");
-				String userAddress = request.getParameter("address");
-				String userCity = request.getParameter("city");
-				String userPincode = request.getParameter("pincode");
-				String userState = request.getParameter("state");
+    try {
+        // Retrieve existing user from session
+        User user = (User) session.getAttribute("activeUser");
+        if (user == null) {
+            // Handle error: user not found in session
+            return;
+        }
 
-				User user = new User(userName, userEmail, userPhone, userGender, userAddress, userCity, userPincode,
-						userState);
-				user.setUserId(oldUser.getUserId());
-				user.setUserPassword(oldUser.getUserPassword());
-				user.setDateTime(oldUser.getDateTime());
+        // Get parameters from the request
+        String userPhone = request.getParameter("mobile_no");
+        String userGender = request.getParameter("gender");
+        String userAddress = request.getParameter("address");
+        String userCity = request.getParameter("city");
+        String userPincode = request.getParameter("pincode");
+        String userState = request.getParameter("state");
 
-				userDao.updateUser(user);
-				session.setAttribute("activeUser", user);
-				Message message = new Message("User information updated successfully!!", "success", "alert-success");
-				session.setAttribute("message", message);
-				response.sendRedirect("profile.jsp");
+        // Update only the fields that are allowed to be updated
+        user.setUserPhone(userPhone);
+        user.setUserGender(userGender);
+        user.setUserAddress(userAddress);
+        user.setUserCity(userCity);
+        user.setUserPincode(userPincode);
+        user.setUserState(userState);
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+        // Update the user in the database
+        userDao.updateUser(user);
+
+        // Set a success message and redirect
+        Message message = new Message("User information updated successfully!!", "success", "alert-success");
+        session.setAttribute("message", message);
+        response.sendRedirect("profile.jsp");
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Handle exception
+    }
+
+
 		} else if (op.trim().equals("deleteUser")) {
 			int uid = Integer.parseInt(request.getParameter("uid"));
 			userDao.deleteUser(uid);

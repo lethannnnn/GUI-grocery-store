@@ -162,6 +162,22 @@ public class CartDao {
 		}
 		return count;
 	}
+public int getTotalQuantityByUserId(int uid) {
+    int totalQuantity = 0;
+    try {
+        String query = "SELECT quantity FROM cart WHERE uid=?";
+        PreparedStatement psmt = this.con.prepareStatement(query);
+        psmt.setInt(1, uid);
+
+        ResultSet rs = psmt.executeQuery();
+        while (rs.next()) {
+            totalQuantity += rs.getInt("quantity");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return totalQuantity;
+}
 
 	public int getProductId(int cid) {
 		int pid = 0;
