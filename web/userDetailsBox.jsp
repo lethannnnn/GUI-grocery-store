@@ -31,7 +31,7 @@ label {
 
         <h3>Personal Information</h3>
 
-        <input type="hidden" name="operation" value="updateUserDetails">
+        <input type="hidden" name="userId" value="<%=userDetail.getUserId()%>">
         <div class="row">
             <div class="col-md-6 mt-2">
                 <label class="form-label">Your name</label>
@@ -120,9 +120,26 @@ label {
         </div>
         
         <div id="submit-btn" class="container text-center mt-3">
-            <button type="submit" class="btn btn-outline-primary me-3" >Update</button>
-        </div>
+            <button type="submit" class="btn btn-danger">Update</button>
     </div>
+               <script>
+    document.getElementById("update-user").onsubmit = function() {
+        var name = document.forms["update-user"]["name"].value.trim();
+        var email = document.forms["update-user"]["email"].value.trim();
+        var mobile_no = document.forms["update-user"]["mobile_no"].value.trim();
+        var address = document.forms["update-user"]["address"].value.trim();
+        var city = document.forms["update-user"]["city"].value.trim();
+        var pincode = document.forms["update-user"]["pincode"].value.trim();
+        var state = document.forms["update-user"]["state"].value.trim();
+
+        if (name === "" || email === "" || mobile_no === "" || address === "" || city === "" || pincode === "" || state === "--Select State--") {
+            alert("Please fill out all fields.");
+            return false;
+        }
+    };
+</script>
+
+
 </form>
 <%
 }

@@ -242,23 +242,7 @@ public void updateUser(User user) {
 		return list;
 	}
 
-         public int getUserIdByUserName(String userName) {
-        int userId = -1; // Default value if user is not found
-        try {
-            String query = "SELECT userId FROM Customer WHERE userName = ?";
-            PreparedStatement pstmt = this.con.prepareStatement(query);
-            pstmt.setString(1, userName);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                userId = rs.getInt("userId");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return userId;
-    }
-         
-          public void updateUserDetails(User user) {
+         public void updateUserDetails(User user) {
 		try {
 			String query = "update Customer set userName = ?, userEmail = ?, userPhone = ?, userGender = ?, userAddress = ?, userCity = ?, userPincode = ?, userState = ? where userId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
@@ -309,6 +293,7 @@ public void updateUser(User user) {
          }
          return user;
      }
+
 
 
 

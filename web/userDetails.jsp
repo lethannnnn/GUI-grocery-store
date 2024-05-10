@@ -25,6 +25,10 @@
 									class="img-fluid">
 							</div>
 						</div>
+						<div class="col-md-8">
+							Hello, <br>
+							<h5>You are in Manager role</h5>
+						</div>
 					</div>  
 				</div>
 

@@ -14,52 +14,35 @@ import helper.ConnectionProvider;
 import javax.servlet.http.HttpSession;
 
 public class EditUserDetailsServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String op = request.getParameter("operation");
-        HttpSession session = request.getSession();
-        User oldUser = (User) session.getAttribute("activeUser");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Retrieve form parameters
+        String userIdParam = request.getParameter("userId");
+        int userId = Integer.parseInt(userIdParam);
+        String userName = request.getParameter("name");
+        String userEmail = request.getParameter("email");
+        String userPhone = request.getParameter("mobile_no");
+        String userGender = request.getParameter("gender");
+        String userAddress = request.getParameter("address");
+        String userCity = request.getParameter("city");
+        String userPincode = request.getParameter("pincode");
+        String userState = request.getParameter("state");
+        
+        // Update user details in the database
         UserDao userDao = new UserDao(ConnectionProvider.getConnection());
-
-        if (op.trim().equals("updateUserDetails")) {
-            try {
-                String userName = request.getParameter("name");
-                String userEmail = request.getParameter("email");
-                String userPhone = request.getParameter("mobile_no");
-                String userGender = request.getParameter("gender");
-                String userAddress = request.getParameter("address");
-                String userCity = request.getParameter("city");
-                String userPincode = request.getParameter("pincode");
-                String userState = request.getParameter("state");
-                User user = new User(userName, userEmail, userPhone, userGender, userAddress, userCity,
-                        userPincode, userState);
-                int userId = Integer.parseInt(request.getParameter("userId"));
-               
-                userDao.updateUserDetails(user);
-                Message message = new Message("User information updated successfully!!", "success", "alert-success");
-                session.setAttribute("message", message);
-                response.sendRedirect("userDetails.jsp?userId=" + userId);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Message message = new Message("Error updating user information", "error", "alert-danger");
-                session.setAttribute("message", message);
-                response.sendRedirect("error_page.jsp");
-            }
-
-        } else if (op.trim().equals("deleteUser")) {
-            int uid = Integer.parseInt(request.getParameter("uid"));
-            userDao.deleteUser(uid);
-            response.sendRedirect("display_users.jsp");
-        }
+        User userDetail = new User();
+        userDetail.setUserId(userId); // Set user ID for the existing user
+        userDetail.setUserName(userName);
+        userDetail.setUserEmail(userEmail);
+        userDetail.setUserPhone(userPhone);
+        userDetail.setUserGender(userGender);
+        userDetail.setUserAddress(userAddress);
+        userDetail.setUserCity(userCity);
+        userDetail.setUserPincode(userPincode);
+        userDetail.setUserState(userState);
+        
+        userDao.updateUser(userDetail); // Update user details in the database
+        
+        // Redirect to userDetails.jsp with updated user data
+        response.sendRedirect("edit_users.jsp?userId=" + userId);
     }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
-    }
-
 }

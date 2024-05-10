@@ -43,7 +43,7 @@
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=userDao.getUserAddress(u.getUserId())%></td>
 				<td>&nbsp;&nbsp;&nbsp;&nbsp;<%=u.getDateTime()%></td>
                                
-				<td><a href="EditUserDetailsServlet?userId=<%=u.getUserId()%>&operation=updateUserDetails" role="button" class="btn btn-danger">Update</a></td>
+				<td><a href="userDetails.jsp?userId=<%=u.getUserId()%>&operation=updateUserDetails" role="button" class="btn btn-danger">Update</a></td>
 
                         </tr>
                                 <%

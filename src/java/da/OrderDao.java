@@ -112,6 +112,7 @@ public class OrderDao {
 		}
 		return list;
 	}
+        
 	public void updateOrderStatus(int oid, String status) {
 		try {
 			String query = "update order_table set status = ? where id = ?";

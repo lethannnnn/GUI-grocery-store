@@ -66,28 +66,28 @@ String from = (String)session.getAttribute("from");
 							</div>
 						</div>
 						<form id="orderForm" action="OrderOperationServlet" method="post">
-    <div class="form-check mt-2">
-        <input class="form-check-input" type="radio" name="payementMode" value="Card Payment" required>
-        <label class="form-check-label">Credit / Debit / ATM card</label><br>
-        <div class="mb-3">
-            <input class="form-control mt-3" type="text" placeholder="Enter card number" name="cardno" id="cardno">
-            <div class="row gx-5">
-                <div class="col mt-3">
-                    <input class="form-control" type="number" placeholder="Enter CVV" name="cvv" id="cvv">
-                </div>
-                <div class="col mt-3">
-                    <input class="form-control" type="text" placeholder="Valid through i.e '07/23'" id="expiry">
-                </div>
-            </div>
-            <input class="form-control mt-3" type="text" placeholder="Enter card holder name" name="name" id="name">
-        </div>
-        <input class="form-check-input" type="radio" name="payementMode" value="Cash on Delivery">
-        <label class="form-check-label">Cash on Delivery</label>
-    </div>
-    <div class="text-end">
-        <button type="button" onclick="validateForm()" class="btn btn-lg btn-outline-primary mt-3">Place Order</button>
-    </div>
-</form>
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="radio" name="paymentMode" value="Card Payment" required>
+                                                    <label class="form-check-label">Credit / Debit / ATM card</label><br>
+                                                    <div class="mb-3">
+                                                        <input class="form-control mt-3" type="text" placeholder="Enter card number" name="cardno" id="cardno">
+                                                        <div class="row gx-5">
+                                                            <div class="col mt-3">
+                                                                <input class="form-control" type="number" placeholder="Enter CVV" name="cvv" id="cvv">
+                                                            </div>
+                                                            <div class="col mt-3">
+                                                                <input class="form-control" type="text" placeholder="Valid through i.e '07/23'" id="expiry">
+                                                            </div>
+                                                        </div>
+                                                        <input class="form-control mt-3" type="text" placeholder="Enter card holder name" name="name" id="name">
+                                                    </div>
+                                                    <input class="form-check-input" type="radio" name="paymentMode" value="Cash on Delivery">
+                                                    <label class="form-check-label">Cash on Delivery</label>
+                                                </div>
+                                                <div class="text-end">
+                                                    <button type="button" onclick="validateForm()" class="btn btn-lg btn-outline-primary mt-3">Place Order</button>
+                                                </div>
+                                            </form>
 					</div>
 				</div>
 			</div>
@@ -102,8 +102,7 @@ String from = (String)session.getAttribute("from");
 						<%
                                                     if (from.trim().equals("cart")) {
                                                         CartDao cartDao = new CartDao(ConnectionProvider.getConnection());
-                                                        int totalProduct = cartDao.getCartCountByUserId(activeUser.getUserId());
-                                                        int totalQuantity = cartDao.getTotalQuantityByUserId(activeUser.getUserId());
+                                                        int totalProduct = cartDao.getTotalQuantityByUserId(activeUser.getUserId());
                                                         float totalPrice = (Float) session.getAttribute("totalPrice");
                                                         float deliveryCharges = totalPrice >= 1000 ? 0 : 25; // Check if totalPrice is 1000 or more
                                                 %>
@@ -111,10 +110,6 @@ String from = (String)session.getAttribute("from");
                                                     <tr>
                                                         <td>Total Item</td>
                                                         <td><%=totalProduct%></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Total Quantity</td>
-                                                        <td><%=totalQuantity%></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Total Price</td>
@@ -244,7 +239,7 @@ String from = (String)session.getAttribute("from");
 </html>
 <script>
     function validateForm() {
-        var paymentMode = document.querySelector('input[name="payementMode"]:checked');
+        var paymentMode = document.querySelector('input[name="paymentMode"]:checked');
 
         if (!paymentMode) {
             alert("Please select one of the payment options.");

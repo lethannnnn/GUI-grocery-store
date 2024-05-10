@@ -49,15 +49,7 @@ UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 		<%
 		} else {
 		%>
-		<div class="container-fluid">
-                    <%
-				for (Order order : orderList) {
-					List<OrderedProduct> ordProdList = ordProdDao.getAllOrderedProduct(order.getId());
-					for (OrderedProduct orderProduct : ordProdList) {
-				%>
-                    <form action="UpdateOrderServlet?oid=<%=order.getId()%>"
-					method="post">
-			<table class="table table-hover">
+                <table class="table table-hover">
 				<tr class="table-primary" style="font-size: 18px;">
 					<th class="text-center">Product</th>
 					<th>Order ID</th>
@@ -68,17 +60,26 @@ UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 					<th>Status</th>
 					<th colspan="2" class="text-center">Action</th>
 				</tr>
+		<div class="container-fluid">
+                    <%
+				for (Order order : orderList) {
+					List<OrderedProduct> ordProdList = ordProdDao.getAllOrderedProduct(order.getId());
+					for (OrderedProduct orderProduct : ordProdList) {
+				%>
+                    <form action="UpdateOrderServlet?id=<%=order.getId()%>" method="post">
+
+			
 
 				<tr>
 					<td class="text-center"><img
-						src="Product_imgs\<%=orderProduct.getImage()%>"
+						src="tmp/<%=orderProduct.getImage()%>"
 						style="width: 50px; height: 50px; width: auto;"></td>
 					<td><%=order.getOrderId()%></td>
 					<td><%=orderProduct.getName()%><br>Quantity: <%=orderProduct.getQuantity()%><br>Total
-						Price: &#8377;<%=orderProduct.getPrice() * orderProduct.getQuantity()%></td>
+						Price: &#36;<%=orderProduct.getPrice() * orderProduct.getQuantity()%></td>
 					<td><%=userDao.getUserName(order.getUserId())%><br>Mobile No. <%=userDao.getUserPhone(order.getUserId())%><br><%=userDao.getUserAddress(order.getUserId())%></td>
 					<td><%=order.getDate()%></td>
-					<td><%=order.getPayementType()%></td>
+					<td><%=order.getPaymentType()%></td>
 					<td><%=order.getStatus()%></td>
 					<td><select id="operation" name="status" class="form-select">
 							<option>--Select Operation--</option>
