@@ -113,16 +113,19 @@ public class OrderDao {
 		return list;
 	}
         
-	public void updateOrderStatus(int oid, String status) {
-		try {
-			String query = "update order_table set status = ? where id = ?";
-			PreparedStatement psmt = this.con.prepareStatement(query);
-			psmt.setString(1, status);
-			psmt.setInt(2, oid);
+	public void updateOrderStatus(String orderid, String status) {
+    try {
+        String query = "UPDATE order_table SET status = ? WHERE orderId = ?"; // Change "orderid" to "orderId" to match your database column name
+        PreparedStatement psmt = this.con.prepareStatement(query);
+        psmt.setString(1, status); // Set the status parameter with the value of the status variable
+        psmt.setString(2, orderid); // Set the order ID parameter
 
-			psmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        psmt.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 }
+
+}
+
+

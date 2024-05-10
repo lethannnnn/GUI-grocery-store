@@ -49,6 +49,7 @@ UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 		<%
 		} else {
 		%>
+                <%@include file="Components/alert_message.jsp" %>
                 <table class="table table-hover">
 				<tr class="table-primary" style="font-size: 18px;">
 					<th class="text-center">Product</th>
@@ -66,9 +67,8 @@ UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 					List<OrderedProduct> ordProdList = ordProdDao.getAllOrderedProduct(order.getId());
 					for (OrderedProduct orderProduct : ordProdList) {
 				%>
-                    <form action="UpdateOrderServlet?id=<%=order.getId()%>" method="post">
-
-			
+                    <form action="UpdateOrderServlet" method="post">
+                        <input type="hidden" name="orderid" value="<%=order.getOrderId()%>">	
 
 				<tr>
 					<td class="text-center"><img
@@ -81,13 +81,50 @@ UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 					<td><%=order.getDate()%></td>
 					<td><%=order.getPaymentType()%></td>
 					<td><%=order.getStatus()%></td>
-					<td><select id="operation" name="status" class="form-select">
-							<option>--Select Operation--</option>
-							<option value="Order Confirmed">Order Confirmed</option>
-							<option value="Shipped">Shipped</option>
-							<option value="Out For Delivery">Out For Delivery</option>
-							<option value="Delivered">Delivered</option>
-					</select></td>
+					<td>
+    <select id="operation" name="status" class="form-select">
+            <%
+                String currentStatus = order.getStatus();
+                // Use a scriptlet to conditionally select the appropriate option
+                if (currentStatus.equals("Order Confirmed")) {
+            %>
+                <option value="Order Confirmed" selected>Order Confirmed</option>
+            <%
+                } else {
+            %>
+                <option value="Order Confirmed">Order Confirmed</option>
+            <%
+                }
+                if (currentStatus.equals("Shipped")) {
+            %>
+                <option value="Shipped" selected>Shipped</option>
+            <%
+                } else {
+            %>
+                <option value="Shipped">Shipped</option>
+            <%
+                }
+                if (currentStatus.equals("Out For Delivery")) {
+            %>
+                <option value="Out For Delivery" selected>Out For Delivery</option>
+            <%
+                } else {
+            %>
+                <option value="Out For Delivery">Out For Delivery</option>
+            <%
+                }
+                if (currentStatus.equals("Delivered")) {
+            %>
+                <option value="Delivered" selected>Delivered</option>
+            <%
+                } else {
+            %>
+                <option value="Delivered">Delivered</option>
+            <%
+                }
+            %>
+        </select>
+    </td>
 					<td>
 						<%
 						if (order.getStatus().equals("Delivered")) {
@@ -102,18 +139,19 @@ UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 						 %>
 					</td>
 				</tr>
-
+                           
 				<%
 				}
 				}
 				%>
 			</table>
-                    </form>
-
+                    
 		</div>
+                
 		<%
 		}
 		%>
+                </form>
 	</div>
 </body>
 </html>
