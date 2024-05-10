@@ -61,7 +61,7 @@ List<Order> orderList = orderDao.getAllOrderByUserId(u2.getUserId());
                         for (OrderedProduct orderProduct : ordProdList) {
                     %>
                         <tr class="text-center">
-                            <td><img src="Product_imgs/<%=orderProduct.getImage()%>" style="width: 40px; height: 40px; width: auto;"></td>
+                            <td><img src="tmp/<%=orderProduct.getImage()%>" style="width: 40px; height: 40px; width: auto;"></td>
                             <td class="text-start"><%=order.getOrderId()%></td>
                             <td class="text-start"><%=orderProduct.getName()%></td>
                             <td><%=orderProduct.getQuantity()%></td> <!-- Use selected quantity -->

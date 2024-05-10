@@ -81,10 +81,7 @@ Product product = (Product) productDao.getProductsByProductId(productId);
 							<button type="submit"
 								formaction="./AddToCartServlet?uid=<%=user.getUserId()%>&pid=<%=product.getProductId()%>"
 								class="btn btn-primary text-white btn-lg">Add to Cart</button>
-							&emsp; <a
-								href="checkout.jsp" id="buy-btn"
-								class="btn btn-info text-white btn-lg" role="button"
-								aria-disabled="true">Buy Now</a> 
+							
 							<%
 							}
 							%>

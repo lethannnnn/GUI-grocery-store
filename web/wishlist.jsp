@@ -44,7 +44,7 @@ ProductDao pDao = new ProductDao(ConnectionProvider.getConnection());
 				Product p = pDao.getProductsByProductId(w.getProductId());
 			%>
 			<tr class="text-center">
-				<td><img src="Product_imgs\<%=p.getProductImages()%>"
+				<td><img src="tmp/<%=p.getProductImages()%>"
 					style="width: 50px; height: 50px; width: auto;"></td>
 				<td class="text-start"><%=p.getProductName()%></td>
 				<td>&#8377;<%=p.getProductPriceAfterDiscount()%></td>

@@ -47,16 +47,16 @@ label {
 								<div class="col-md-6 mt-2">
 									<label class="form-label">Mobile number</label> <input
 										type="number" name="user_mobile_no"
-										placeholder="Mobile number" class="form-control">
+                                                                                placeholder="Mobile number" class="form-control" required=>
 								</div>
 								<div class="col-md-6 mt-5">
-									<label class="form-label pe-3">Gender</label> <input
-										class="form-check-input" type="radio" name="gender"
-										value="Male"> <span class="form-check-label pe-3 ps-1">
-										Male </span> <input class="form-check-input" type="radio"
-										name="gender" value="Female"> <span
-										class="form-check-label ps-1"> Female </span>
-								</div>
+                                                                    <label class="form-label pe-3">Gender</label> 
+                                                                    <input class="form-check-input" type="radio" name="gender" value="Male" required> 
+                                                                    <span class="form-check-label pe-3 ps-1"> Male </span> 
+                                                                    <input class="form-check-input" type="radio" name="gender" value="Female"> 
+                                                                    <span class="form-check-label ps-1"> Female </span>
+                                                                </div>
+
 							</div>
 							<div class="mt-2">
 								<label class="form-label">Address</label> <input type="text"
@@ -77,32 +77,32 @@ label {
 								</div>  
 							</div>
 							<div class="row">
-								<div class="col-md-6 mt-2">
-									<label class="form-label">State</label> <select name="state"
-										class="form-select">
-										<option selected>--Select State--</option>
-										<option value="Perlis">Perlis</option>
-										<option value="Kedah">Kedah</option>
-										<option value="PulauPinang">Pulau Pinang</option>
-										<option value="Perak">Perak</option>
-										<option value="Selangor">Selangor</option>
-										<option value="KualaLumpur">Kuala Lumpur</option>
-										<option value="NegeriSembilan">Negeri Sembilan</option>
-										<option value="Melaka">Melaka</option>
-										<option value="Johor">Johor</option>
-										<option value="Pahang">Pahang</option>
-										<option value="Terengganu">Terengganu</option>
-										<option value="Kelantan">Kelantan</option>
-										<option value="Sarawak">Sarawak</option>
-										<option value="Sabah">Sabah</option>
-									</select>
-								</div>
-								<div class="col-md-6 mt-2">
-									<label class="form-label">Password</label> <input
-										type="password" name="user_password"
-										placeholder="Enter Password" class="form-control" required>
-								</div>
-							</div>
+                                                            <div class="col-md-6 mt-2">
+                                                                <label class="form-label">State</label> 
+                                                                <select name="state" class="form-select" required>
+                                                                    <option value="" disabled selected>--Select State--</option>
+                                                                    <option value="Perlis">Perlis</option>
+                                                                    <option value="Kedah">Kedah</option>
+                                                                    <option value="PulauPinang">Pulau Pinang</option>
+                                                                    <option value="Perak">Perak</option>
+                                                                    <option value="Selangor">Selangor</option>
+                                                                    <option value="KualaLumpur">Kuala Lumpur</option>
+                                                                    <option value="NegeriSembilan">Negeri Sembilan</option>
+                                                                    <option value="Melaka">Melaka</option>
+                                                                    <option value="Johor">Johor</option>
+                                                                    <option value="Pahang">Pahang</option>
+                                                                    <option value="Terengganu">Terengganu</option>
+                                                                    <option value="Kelantan">Kelantan</option>
+                                                                    <option value="Sarawak">Sarawak</option>
+                                                                    <option value="Sabah">Sabah</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 mt-2">
+                                                                <label class="form-label">Password</label> 
+                                                                <input type="password" name="user_password" placeholder="Enter Password" class="form-control" required>
+                                                            </div>
+                                                        </div>
+
 
 							<div id="submit-btn" class="container text-center mt-4">
 								<button type="submit" class="btn btn-outline-primary me-3">Submit</button>
@@ -116,7 +116,7 @@ label {
 							</div>
 						</form>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
 	</div>
