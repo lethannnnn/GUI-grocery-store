@@ -19,7 +19,7 @@ public class OrderedProductDao {
 	
 	public void insertOrderedProduct(OrderedProduct ordProduct) {
 		try {
-			String query = "insert into ordered_product(name, quantity, price, image, orderid) values(?, ?, ?, ?, ?)";
+			String query = "insert into ordered_product(name, quantity, price, image, orderId) values(?, ?, ?, ?, ?)";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setString(1, ordProduct.getName());
 			psmt.setInt(2, ordProduct.getQuantity());
@@ -36,7 +36,7 @@ public class OrderedProductDao {
 	public List<OrderedProduct> getAllOrderedProduct(int oid){
 		List<OrderedProduct> list = new ArrayList<OrderedProduct>();
 		try {
-			String query = "select * from ordered_product where orderid = ?";
+			String query = "select * from ordered_product where orderId = ?";
 			PreparedStatement psmt = this.con.prepareStatement(query);
 			psmt.setInt(1, oid);
 			ResultSet rs = psmt.executeQuery();

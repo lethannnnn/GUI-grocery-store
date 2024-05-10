@@ -71,7 +71,7 @@ UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 
 				<tr>
 					<td class="text-center"><img
-						src="tmp/<%=orderProduct.getImage()%>"
+						src="Product_imgs\<%=orderProduct.getImage()%>"
 						style="width: 50px; height: 50px; width: auto;"></td>
 					<td><%=order.getOrderId()%></td>
 					<td><%=orderProduct.getName()%><br>Quantity: <%=orderProduct.getQuantity()%><br>Total
